@@ -1,9 +1,11 @@
-FROM registry.access.redhat.com/ubi9/ubi-minimal
+FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
 
-RUN useradd -m -s /bin/bash appuser
+RUN env | sort && \
+    microdnf install shadow-utils && \
+    useradd -r -u 1000 -g 0 -m -d /home/appuser -s /bin/bash appuser && \
+    microdnf clean all
 
 USER appuser
 WORKDIR /home/appuser
 RUN id && \
-    env && \
-    while true; do echo "Hello from container"; sleep 30; done
+    while true; do echo "Hello from appuser in container"; sleep 30; done
