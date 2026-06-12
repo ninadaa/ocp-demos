@@ -7,5 +7,4 @@ RUN env | sort && \
 
 USER appuser
 WORKDIR /home/appuser
-RUN id && \
-    while true; do echo "Hello from appuser in container"; sleep 30; done
+ENTRYPOINT ["sh" "run.sh"]
