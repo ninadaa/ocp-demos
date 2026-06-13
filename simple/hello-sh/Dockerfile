@@ -5,6 +5,12 @@ RUN env | sort && \
     useradd -r -u 1000 -g 0 -m -d /home/appuser -s /bin/bash appuser && \
     microdnf clean all
 
+# Entry-Point-Skript kopieren
+COPY entrypoint.sh /
+# Wichtig: Ausführungsrechte explizit setzen
+RUN ls -l && chmod g+x entrypoint.sh
+
+
 USER appuser
 WORKDIR /home/appuser
 # set default executable for the container:
