@@ -7,4 +7,7 @@ RUN env | sort && \
 
 USER appuser
 WORKDIR /home/appuser
+# set default executable for the container:
 ENTRYPOINT ["sh" "run.sh"]
+# provide default arguments:
+#CMD ["--default-arg"]
