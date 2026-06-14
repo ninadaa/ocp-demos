@@ -1,6 +1,11 @@
 #!/usr/bin/python
 import time
-import openshift_client as oc
+try:
+    import openshift_client as oc
+    print("openshift_client installed")
+except ImportError:
+    print("openshift_client not installed")
+    time.sleep(1200)
 
 print('OpenShift client version: {}'.format(oc.get_client_version()))
 print('OpenShift server version: {}'.format(oc.get_server_version()))
